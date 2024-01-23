@@ -1,4 +1,4 @@
-package com.zerobase.schedulemanagement.entry.dto;
+package com.zerobase.schedulemanagement.entry.dto.schdule;
 
 import com.zerobase.schedulemanagement.domain.entity.Schedule;
 import java.time.ZoneId;
@@ -31,8 +31,10 @@ public class ScheduleResponseDto {
                               .endAt(schedule.getEndAt())
                               .participationIds(participationIds)
                               .isDone(schedule.getIsDone())
-                              .createdAt(schedule.getCreatedAt().atZone(ZoneId.of("KST")).toInstant().toEpochMilli())
-                              .updatedAt(schedule.getUpdatedAt().atZone(ZoneId.of("KST")).toInstant().toEpochMilli())
+                              .createdAt(
+                                  schedule.getCreatedAt().atZone(ZoneId.of("Asia/Seoul")).toInstant().toEpochMilli())
+                              .updatedAt(
+                                  schedule.getUpdatedAt().atZone(ZoneId.of("Asia/Seoul")).toInstant().toEpochMilli())
                               .createdBy(schedule.getCreatedBy())
                               .updatedBy(schedule.getUpdatedBy())
                               .build();

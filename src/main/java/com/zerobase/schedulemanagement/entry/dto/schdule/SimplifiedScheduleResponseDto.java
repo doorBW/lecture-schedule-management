@@ -1,4 +1,4 @@
-package com.zerobase.schedulemanagement.entry.dto;
+package com.zerobase.schedulemanagement.entry.dto.schdule;
 
 import com.zerobase.schedulemanagement.domain.entity.Schedule;
 import lombok.Builder;

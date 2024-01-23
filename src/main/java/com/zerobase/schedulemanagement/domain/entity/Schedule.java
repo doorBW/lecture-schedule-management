@@ -1,5 +1,6 @@
 package com.zerobase.schedulemanagement.domain.entity;
 
+import com.zerobase.schedulemanagement.entry.dto.schdule.UpdateScheduleParam;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -56,4 +57,12 @@ public class Schedule {
   private Long createdBy;
 
   private Long updatedBy;
+
+  public void apply(UpdateScheduleParam param){
+    this.title = param.getTitle();
+    this.description = param.getDescription();
+    this.startAt = param.getStartAt();
+    this.endAt = param.getEndAt();
+    this.updatedBy = param.getMemberId();
+  }
 }
