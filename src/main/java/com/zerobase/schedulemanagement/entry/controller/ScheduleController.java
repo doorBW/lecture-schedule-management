@@ -54,4 +54,11 @@ public class ScheduleController {
       @RequestBody UpdateScheduleRequestDto dto) {
     return ResponseDto.of(scheduleService.updateSchedule(dto.toParam(scheduleId, memberId)));
   }
+
+  @PutMapping("/{id}/done")
+  public ResponseDto<Long> doneSchedule(
+      @RequestHeader(name = "MEMBER-ID") Long memberId,
+      @PathVariable(name = "id") Long scheduleId) {
+    return ResponseDto.of(scheduleService.doneSchedule(scheduleId, memberId));
+  }
 }

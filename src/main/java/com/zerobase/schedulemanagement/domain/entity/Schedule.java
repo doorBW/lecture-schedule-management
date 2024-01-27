@@ -1,6 +1,8 @@
 package com.zerobase.schedulemanagement.domain.entity;
 
+import com.zerobase.schedulemanagement.entry.dto.ResponseCode;
 import com.zerobase.schedulemanagement.entry.dto.schdule.UpdateScheduleParam;
+import com.zerobase.schedulemanagement.infra.exception.ScheduleManagementException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -58,11 +60,19 @@ public class Schedule {
 
   private Long updatedBy;
 
-  public void apply(UpdateScheduleParam param){
+  public void apply(UpdateScheduleParam param) {
     this.title = param.getTitle();
     this.description = param.getDescription();
     this.startAt = param.getStartAt();
     this.endAt = param.getEndAt();
     this.updatedBy = param.getMemberId();
+  }
+
+  public void done(Long memberId) {
+    if (this.isDone) {
+      throw new ScheduleManagementException(ResponseCode.ALREADY_DONE_SCHEDULE);
+    }
+    this.isDone = true;
+    this.updatedBy = memberId;
   }
 }

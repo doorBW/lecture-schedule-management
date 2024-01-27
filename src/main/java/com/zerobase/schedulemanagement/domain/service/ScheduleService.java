@@ -130,6 +130,23 @@ public class ScheduleService {
     return scheduleRepository.save(schedule).getId();
   }
 
+  @Transactional(readOnly = false)
+  public Long doneSchedule(Long scheduleId, Long memberId) {
+    // get schedule
+    Schedule schedule = scheduleRepository.findById(scheduleId)
+                                          .orElseThrow(() -> new ScheduleManagementException(ResponseCode.NO_SCHEDULE));
+
+    // validation member
+    List<MemberSchedule> memberSchedules = memberScheduleRepository.findAllByScheduleId(scheduleId);
+    if (!memberSchedules.stream().map(memberSchedule -> memberSchedule.getMember().getId()).toList()
+                        .contains(memberId)) {
+      throw new ScheduleManagementException(ResponseCode.NOT_PARTICIPATED_SCHEDULE);
+    }
+
+    schedule.done(memberId);
+    return scheduleRepository.save(schedule).getId();
+  }
+
   private Boolean isParticipationsExistMember(List<Member> participationMembers, List<Long> participationIds) {
     return participationMembers.size() == participationIds.size();
   }

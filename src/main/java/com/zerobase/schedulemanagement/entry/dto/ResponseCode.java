@@ -10,6 +10,7 @@ public enum ResponseCode {
   NO_SCHEDULE("0400", "일정이 존재하지 않습니다."),
   NOT_PARTICIPATED_SCHEDULE("0401", "일정에 참여되어 있지 않습니다."),
   NO_MEMBER("0402", "존재하지 않는 사용자입니다."),
+  ALREADY_DONE_SCHEDULE("0403", "이미 완료처리된 일정입니다."),
 
   BAD_REQUEST("9400", "잘못된 요청입니다."),
   INTERNAL_SERVER_ERROR("9500", "서버 내부 에러입니다.");
