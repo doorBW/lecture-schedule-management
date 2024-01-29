@@ -81,6 +81,10 @@ public class ScheduleService {
     });
     memberScheduleRepository.saveAll(memberSchedules);
 
+    // notification to participation
+    // 비동기
+    // 메세지큐
+
     return schedule.getId();
   }
 
@@ -125,6 +129,10 @@ public class ScheduleService {
     memberScheduleRepository.saveAll(memberSchedulesToAdd);
     memberScheduleRepository.deleteAll(memberSchedulesToDelete);
 
+    // notification to participation
+    // 비동기
+    // 메세지큐
+
     // schedule update
     schedule.apply(param);
     return scheduleRepository.save(schedule).getId();
@@ -144,6 +152,11 @@ public class ScheduleService {
     }
 
     schedule.done(memberId);
+
+    // notification to participation
+    // 비동기
+    // 메세지큐
+
     return scheduleRepository.save(schedule).getId();
   }
 
